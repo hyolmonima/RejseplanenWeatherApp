@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "WeatherJS";
+}
+
+<h2>WeatherJS</h2>
+
+<p id="name"></p>
+<p id="temp"></p>
+<p id="humidity"></p>
+<button>Get Weather</button>
+
+
+<script>
+    $(document).ready(function () {
+        $("button").click(function (){
+            $.get("http://api.openweathermap.org/data/2.5/weather?q=Copenhagen H&APPID=67747486e2d5351d2a8c6c0c70cf5df7&Unit=imperial", function (response) {
+                //return response
+                console.log(response);
+        $("#name").text(response.name);
+        $("#temp").text(response.main.temp);
+        $("#humidity").text(response.main.humidity); 
+             });
+        });
+    });
+    </script>

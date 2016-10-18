@@ -1,0 +1,10 @@
+﻿
+@using weatherApp.Models
+@{
+    ViewBag.Title = "DisplayResult";
+}
+
+<h2>DisplayResult</h2>
+@{ var dat = (origDest)ViewData["data"];}
+The Origin is <span data-bind="">@dat.origin</span> <br>
+The Destination is <span data-bind=""> @dat.destination</span> <br>
