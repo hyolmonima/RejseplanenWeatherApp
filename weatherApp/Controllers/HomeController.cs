@@ -37,26 +37,27 @@ namespace RejseplanenWeather.Controllers
         //    data.destination = Request.Form["destination"];
         //    return RedirectToAction("WeatherOrNot", "Home", new { origin = data.origin, destination = data.destination });
         //}
+        
+        public JsonResult GetTrip(string origin, string destination)
+        {
+            origDest obj = new origDest();
+            obj.origin = origin;
+            obj.destination = destination;
+           // obj.origin = Request.Form["origin"].ToString();    //"000000775";
+           // obj.destination = Request.Form["destination"].ToString();   //"008600646";
+           // origDest data = new origDest();
+            return Json (obj.getTripInfo(), JsonRequestBehavior.AllowGet);
+            
+        }
+
         public ActionResult WeatherOrNot()
 
         {
             origDest obj = new origDest();
             obj.origin = Request.Form["origin"].ToString();
             obj.destination = Request.Form["destination"].ToString();
-            return RedirectToAction("GetTrip", "Home", new { origin = obj.origin, destination = obj.destination });
-           // return Content(obj.origin, obj.destination);
- }
-
-
-        public JsonResult GetTrip(string origin, string destination)
-        {
-            origDest obj = new origDest();
-            obj.origin = origin;
-            obj.destination = destination;
-          // obj.origin = Request.Form["origin"].ToString();
-           // obj.destination = Request.Form["destination"].ToString();
-            //origDest data = new origDest();
-            return Json(obj.getTripInfo(), JsonRequestBehavior.AllowGet);
+            return RedirectToAction("GetTrip", new { origin = obj.origin, destination = obj.destination });
+            //return View();
         }
     }
 }

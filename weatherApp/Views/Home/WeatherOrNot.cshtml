@@ -73,6 +73,7 @@
             console.log(response);
             tripData = ko.mapping.fromJS(response);
             ko.applyBindings(tripData);
+            return tripData;
 
 
         });
