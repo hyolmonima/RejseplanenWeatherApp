@@ -1,0 +1,44 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/controllers.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+</head>
+<body ng-app="AngularForDemo">
+    <h3>Add Player</h3>
+    {{message}}
+
+    <form name="AddPlayerform" ng-submit="AddPlayer();">
+        <table>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td> <input type="text" ng-model="player.Name" required /> </td>
+            </tr>
+            <tr>
+                <td>
+                    Club
+                </td>
+                <td> <input type="text" ng-model="player.Club" required /> </td>
+            </tr>
+            <tr>
+                <td>
+                    Country
+                </td>
+                <td> <input type="text" ng-model="player.Country" readonly /> </td>
+            </tr>
+            <tr>
+                <td colspan="2"> <input type="submit" value="Submit" ng-disabled="AddPlayerform.$invalid" /></td>
+            </tr>
+        </table>
+
+    </form>
+
+</body>
+</html>

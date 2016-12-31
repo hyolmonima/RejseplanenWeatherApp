@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "DestinationWeather";
+}
+
+<h2>DestinationWeather</h2>
+
+<div class="col-md-12 ">
+    <form action="">
+        <h1>Weather at <span data-bind="text:name"> </span> </h1>
+        <div class="list-group-item"><b>Temperature : <span style="font-weight : bold" data-bind="text: main.temp"></span></b></div>
+        <input type="hidden" name="temperature" data-bind="value:main.temp"/>
+        <div data-bind="foreach:weather">
+            <div class="list-group-item"><b>Weather Description : <span data-bind="text:description"></span></b></div>
+            <input type="hidden" name="weatherDescription" data-bind="value:description" />
+            <div class="list-group-item"><b>Weather : <span data-bind="text:main"></span></b></div>
+            <input type="hidden" name="temperature" data-bind="value:main" /><br/>
+            <input class="btn btn-default form-control" type="submit" value="View Recommendations"/>
+        </div>
+    </form>
+</div>@*<hr style="width:75%;border: 0; border-bottom: 1px dashed #52399b; background: #999;" />*@
+
+
+
+<script>
+    var weatherData = Object();
+    $(document).ready(function () {
+        $.get("@Url.Action("GetWeather" , "Home")", function (response) {
+            console.log(response);
+            weatherData = ko.mapping.fromJS(response);
+            ko.applyBindings(weatherData);
+
+
+        });
+    });
+</script>

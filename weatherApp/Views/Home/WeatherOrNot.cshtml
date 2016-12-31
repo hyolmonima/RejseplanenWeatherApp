@@ -3,51 +3,61 @@
     ViewBag.Title = "Rejseplanen Trip List";
 }
 
-@*<h2>Transportations from Copenhagen H</h2>*@
+@*<h2>Transportations with Connections H</h2>*@
 
 <h1> Journey Itinerary <span data-bind="text:"></span> </h1>
+
+
+
+@*--------Direct --------*@
+<div class="col-md-12 well" data-bind="">
+    <h1>Without Transits </h1>
+    <div class="list-group" data-bind="foreach: TripList.Trip">
+        <div class="list-group-item">Name :<span style="font-weight : bold" data-bind="text: Leg.name"></span></div>
+        <div class="list-group-item">Note : <span data-bind="text:Leg.Notes.text"></span></div>
+        <div class="list-group-item">Departure Stop : <span data-bind="text: Leg.Origin.name"></span></div>
+        <div class="list-group-item">Destination : <span data-bind="text: Leg.Destination.name"></span></div>
+        <div class="list-group-item">Departure Time : <span data-bind="text:Leg.Origin.time"></span></div>
+        <div class="list-group-item">Arrival Time : <span data-bind="text: Leg.Destination.time"></span></div>
+
+        <hr>
+
+        @*<div data-bind="foreach:Leg">
+                    <div class="list-group-item success">Name :<span data-bind="text: name"></span></div>
+                    <div class="list-group-item">Note : <span data-bind="text:Notes.text"></span></div>
+                    <div class="list-group-item">Departure Stop : <span data-bind="text: Origin.name"></span></div>
+                    <div class="list-group-item">Destination : <span data-bind="text: Destination.name"></span></div>
+                    <div class="list-group-item">Departure Time : <span data-bind="text:Origin.time"></span></div>
+                    <div class="list-group-item">Arrival Time : <span data-bind="text: Destination.time"></span></div>
+
+            </div>*@
+    </div>
+    <form action="DestinationWeather">
+        <input class="btn btn-default form-control" type="submit" value="Weather At Destination" />
+    </form><br>
+</div>
+
 @*----- With Connections-----*@
 <div class="col-md-12 ">
     <h1>With Transits </h1>
+
     <div class="list-group" data-bind="foreach: TripList.Trip">
-      
-        <div class="well"  data-bind="foreach:Leg">
+
+        <div class="well" data-bind="foreach:Leg">
             <div class="list-group-item success">Name :<span style="font-weight : bold" data-bind="text: name"></span></div>
             <div class="list-group-item">Note : <span data-bind="text:Notes.text"></span></div>
             <div class="list-group-item">Departure Stop : <span data-bind="text: Origin.name"></span></div>
             <div class="list-group-item">Destination : <span data-bind="text: Destination.name"></span></div>
             <div class="list-group-item">Departure Time : <span data-bind="text:Origin.time"></span></div>
             <div class="list-group-item">Arrival Time : <span data-bind="text: Destination.time"></span></div>
-            <br>
+            <div class="list-group-item">Arrival Time : <span data-bind="text: MessageList.message.Header"></span></div><br />
+
         </div>@*<hr style="width:75%;border: 0; border-bottom: 1px dashed #52399b; background: #999;" />*@
-
     </div>
+    <form action="DestinationWeather">
+        <input class="btn btn-default form-control" type="submit" value="Weather At Destination" />
+    </form><br>
 </div>
-
-
-@*--------From Trekroner to Copenhagen H --------*@
-<div class="col-md-12 well" data-bind="">
-    <h1>Without Transits </h1>
-        <div class="list-group" data-bind="foreach: TripList.Trip">
-            <div class="list-group-item">Name :<span data-bind="text: Leg.name"></span></div>
-            <div class="list-group-item">Note : <span data-bind="text:Leg.Notes.text"></span></div>
-            <div class="list-group-item">Departure Stop : <span data-bind="text: Leg.Origin.name"></span></div>
-            <div class="list-group-item">Destination : <span data-bind="text: Leg.Destination.name"></span></div>
-            <div class="list-group-item">Departure Time : <span data-bind="text:Leg.Origin.time"></span></div>
-            <div class="list-group-item">Arrival Time : <span data-bind="text: Leg.Destination.time"></span></div>
-            <hr>
-   
-        @*<div data-bind="foreach:Leg">
-                <div class="list-group-item success">Name :<span data-bind="text: name"></span></div>
-                <div class="list-group-item">Note : <span data-bind="text:Notes.text"></span></div>
-                <div class="list-group-item">Departure Stop : <span data-bind="text: Origin.name"></span></div>
-                <div class="list-group-item">Destination : <span data-bind="text: Destination.name"></span></div>
-                <div class="list-group-item">Departure Time : <span data-bind="text:Origin.time"></span></div>
-                <div class="list-group-item">Arrival Time : <span data-bind="text: Destination.time"></span></div>
-            
-        </div>*@
-    </div>
-    </div>
 
 
 
@@ -68,12 +78,10 @@
 <script>
     var tripData = Object();
     $(document).ready(function () {
-
-        $.get("@Url.Action("GetTrip", "Home")", function (response) {
+        $.get("@Url.Action("GetTrip" , "Home")", function (response) {
             console.log(response);
             tripData = ko.mapping.fromJS(response);
             ko.applyBindings(tripData);
-            return tripData;
 
 
         });

@@ -4,9 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RejseplanenWeather.Models;
-using weatherApp.Models;
-using System.Net;
-using System.Web.Script.Serialization;
 
 namespace RejseplanenWeather.Controllers
 {
@@ -23,43 +20,26 @@ namespace RejseplanenWeather.Controllers
             return View();
         }
 
-        public ActionResult form()
+        public ActionResult DestinationWeather()
         {
-
+            return View();
+        }
+        public JsonResult GetWeather()
+        {
+            Weather data = new Weather();
+           
+            return Json(data.getWeatherForcast(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult WeatherOrNot()
+        {
             return View();
         }
 
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult OrigDestInput()
-        //{
-        //    origDest data = new origDest();
-        //    data.origin = Request.Form["origin"];
-        //    data.destination = Request.Form["destination"];
-        //    return RedirectToAction("WeatherOrNot", "Home", new { origin = data.origin, destination = data.destination });
-        //}
-        
-        public JsonResult GetTrip(string origin, string destination)
+        public JsonResult GetTrip()
         {
-            origDest obj = new origDest();
-            obj.origin = origin;
-            obj.destination = destination;
-           // obj.origin = Request.Form["origin"].ToString();    //"000000775";
-           // obj.destination = Request.Form["destination"].ToString();   //"008600646";
-           // origDest data = new origDest();
-            return Json (obj.getTripInfo(), JsonRequestBehavior.AllowGet);
-            
+            Rejseplanen data = new Rejseplanen();
+            return Json(data.getTripInfo(), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult WeatherOrNot()
-
-        {
-            origDest obj = new origDest();
-            obj.origin = Request.Form["origin"].ToString();
-            obj.destination = Request.Form["destination"].ToString();
-            return RedirectToAction("GetTrip", new { origin = obj.origin, destination = obj.destination });
-            //return View();
-        }
     }
 }
-
-       

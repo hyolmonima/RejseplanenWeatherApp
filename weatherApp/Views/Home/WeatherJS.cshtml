@@ -3,24 +3,75 @@
     ViewBag.Title = "WeatherJS";
 }
 
-<h2>WeatherJS</h2>
+<h2>Trip Plan</h2>
+<div ng-app="App">
 
-<p id="name"></p>
-<p id="temp"></p>
-<p id="humidity"></p>
-<button>Get Weather</button>
+    <div class="container">
+        <div ng-controller="TripController">
+            <form name="getTripWithArgsform" >
+                <input ng-model="originId" type="text" />
+                <input ng-model="destinationId" type="text" />
+                <input type="submit" value="Search" ng-click="userQuery(originId, destinationId);"/>
+               
+            </form>
+
+            <div ng-repeat="TripList in trips">
+                <div class="panel panel-default" ng-repeat="legs in TripList.Trip">
+                    <br />
+                    <div>
+                        @*<span class="list-group-item-text"> {{legs.Leg}}</span>*@
+                        <h5>
+                            <span ng-hide="legs.Leg.name==null" class="alert alert-info">
+                                {{legs.Leg.name}}
+                                <span ng-hide="legs.Leg.Origin.time==null" style="font-size:medium;" class="badge">{{legs.Leg.Origin.time}}</span>
+                            </span>
+                        </h5> <br />
+                        <h4>
+                            <span ng-hide="legs.Leg.Origin.name == null" class="alert alert-success">
+                                {{legs.Leg.Origin.name}}
+                                <span ng-hide="legs.Leg.Origin.rtTrack == null" class="badge"> Spor {{legs.Leg.Origin.rtTrack}}</span>
+                            </span><span ng-hide="legs.Leg.Origin.rtTrack == null" class="glyphicon glyphicon-arrow-right"></span>
+                            <span ng-hide="legs.Leg.Destination.name==null" class="alert alert-success">
+                                {{legs.Leg.Destination.name}}
+                                <span ng-hide="legs.Leg.Destination.rtTrack==null" class="badge"> Spor {{legs.Leg.Destination.rtTrack}}</span>
+                            </span>
+                        </h4>
+                        <div class="panel panel-body" ng-hide="sub_leg.Origin.name == null" ng-repeat="sub_leg in legs.Leg">
+                            <span class="alert alert-info">
+                                {{sub_leg.name}}
+                                <span class="badge">{{sub_leg.Origin.time}}</span>
+                            </span>
+                            <span class="alert alert-success"> {{sub_leg.Origin.name}} <span class="badge">Spor {{sub_leg.Origin.rtTrack}}</span></span>
+                            <span ng-hide="sub_leg.Origin.name == null" class="glyphicon glyphicon-arrow-right"></span>
+                            <span class="alert alert-success"> {{sub_leg.Destination.name}}<span class="badge">Spor {{sub_leg.Destination.rtTrack}}</span> </span>
+                        </div>
+                        <br />
+                        @*<div ng-if="legs != null" class="list-group-item" ng-repeat="">  </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h2>WeatherJS</h2>
+
+    <p id="name"></p>
+    <p id="temp"></p>
+    <p id="humidity"></p>
+    <button>Get Weather</button>
 
 
-<script>
-    $(document).ready(function () {
-        $("button").click(function (){
-            $.get("http://api.openweathermap.org/data/2.5/weather?q=Copenhagen H&APPID=67747486e2d5351d2a8c6c0c70cf5df7&Unit=imperial", function (response) {
-                //return response
-                console.log(response);
-        $("#name").text(response.name);
-        $("#temp").text(response.main.temp);
-        $("#humidity").text(response.main.humidity); 
-             });
+    <script>
+        $(document).ready(function () {
+            $("button").click(function (){
+                $.get("http://api.openweathermap.org/data/2.5/weather?q=Copenhagen H&APPID=67747486e2d5351d2a8c6c0c70cf5df7&Unit=imperial", function (response) {
+                    //return response
+                    console.log(response);
+            $("#name").text(response.name);
+            $("#temp").text(response.main.temp);
+            $("#humidity").text(response.main.humidity);
+                 });
+            });
         });
-    });
-    </script>
+        </script>*@
