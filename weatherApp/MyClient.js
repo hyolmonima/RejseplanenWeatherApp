@@ -38,6 +38,22 @@ App.controller('RejseController', function ($scope, $http, RejseService) {
             });
     }
 
+    $scope.originQuery = function (originString) {
+        return $http.get('/Location/OriginLocationService?originString=' + originString + '&format=json')
+          .success(function (originData) {
+              $scope.origin = originData;
+              console.log($scope.origin);
+          })
+    };
+
+    $scope.destinationQuery = function (destinationString) {
+        return $http.get('/Location/DestinationLocationService?destinationString=' + destinationString + '&format=json')
+          .success(function (destinationData) {
+              $scope.destination = destinationData;
+              console.log($scope.destination);
+          })
+    };
+
     $scope.userQuery = function (originId, destinationId) {
         return $http.get('/Rejse/DataReceiver?origin='+ originId+'&destination='+ destinationId+'&format=json')
           .success(function (tripData1) {
@@ -73,13 +89,13 @@ App.factory('RejseService', ['$http', function ($http) {
 
 }]);
 
-//App.factory('TripService', ['$http', function ($http) {
+App.factory('LocationService', ['$http', function ($http) {
 
-//    var TripService = {};
-//    TripService.getTrips = function () {
-//        return $http.get('/Rejse/GetTrip');
-//    };
-//    return TripService;
+    var LocationService = {};
+    LocationService.getLocations = function (location) {
+        return $http.getJSON('http://xmlopen.rejseplanen.dk/bin/rest.exe/location?input='+ location);
+    };
+    return LocationService;
 
-//}]);
+}]);
 

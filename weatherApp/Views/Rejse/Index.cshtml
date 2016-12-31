@@ -4,30 +4,26 @@
 }
 
 <h2>Trip Planner</h2>
-<div ng-app="App" ng-controller="RejseController">
+<div class="col" ng-app="App" ng-controller="RejseController">
+    <div class="input-group col-md-4">
+        <input class="form-control" type="text" ng-model="origin" value="{{origin.LocationList.StopLocation.name}}" placeholder="Point of departure" />
+        <input class="form-control" type="submit" value="Type and Select your Departure" ng-click="originQuery(origin)" />
+        @*<span class="input-group-addon"> Origin</span>*@
+        <select ng-model="originId" class="form-control" placeholder="Select your Departure Point">
+            <option ng-repeat="location in origin.LocationList.StopLocation" value="{{location.id}}">{{location.name}}</option>
+        </select>
+
+    </div>
+    <div class="input-group col-md-4">
+        <input class="form-control" type="text" ng-model="destination" placeholder="Destination Point" />
+        <input class="form-control" type="submit" value="Type and Select your Destination" ng-click="destinationQuery(destination)" />
+        @*<span class="input-group-addon">  Destination</span>*@
+        <select ng-model="destId" class="form-control" placeholder="Select Destination Point">
+            <option ng-repeat="location in destination.LocationList.StopLocation" value="{{location.id}}">{{location.name}}</option>
+        </select>
+    </div><br /> <br />
     <div class="input-group">
-        <span class="input-group-addon"> Origin</span>
-        <select ng-model="originId" class="form-control">
-            <option value="008600646">Nørreport</option>
-            <option value="008600626">København H</option>
-            <option value="008600856">Ørestad</option>
-            <option value="008600755">Trekroner</option>
-            <option value="008600617">Roskilde</option>
-            <option value="000000775">Dragør Stationsplads</option>
-        </select>
-        <br>
-    </div> <br /> <div class="input-group">
-        <span class="input-group-addon">  Destination</span>
-        <select ng-model="destId" class="form-control">
-            <option value="008600646">Nørreport</option>
-            <option value="008600617">Roskilde</option>
-            <option value="008600626">København H</option>
-            <option value="008600856">Ørestad</option>
-            <option value="008600755">Trekroner</option>
-            <option value="000000775">Dragør Stationsplads</option>
-        </select>
-    </div><br /><div class="input-group">
-        <input class="btn btn-success" value="Serch the Connections" type="submit" ng-model="but_Submit" ng-click="userQuery(originId,destId)" />
+        <input class="btn btn-success" value="Search the Connections" type="submit" ng-model="but_Submit" ng-click="userQuery(originId,destId)" />
     </div><br />
 
     <div ng-hide="trips1 == null" ng-repeat="TripList in trips1">

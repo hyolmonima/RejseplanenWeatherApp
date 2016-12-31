@@ -6,19 +6,18 @@ using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
 
-namespace weatherApp.Models
+namespace RejseplanenWeather.Models
 {
-
-    public class origDest
+    public class LocationService
     {
-        public string baseUrl { get; set; }
-        public object getTripInfo()
+        public string locationString { get; set; }
+        public object getLocation()
         {
-            //string url = "http://xmlopen.rejseplanen.dk/bin/rest.exe/trip?originId=" + origin + "&destId=" + destination + "&format=json";
+            var url = string.Format("http://xmlopen.rejseplanen.dk/bin/rest.exe/location?input={0}&format=json",locationString);
 
             WebClient client = new WebClient();
             client.Encoding = Encoding.UTF8;
-            var content = client.DownloadString(baseUrl);
+            var content = client.DownloadString(url);
             var serializer = new JavaScriptSerializer();
             var jsonContent = serializer.Deserialize<Object>(content);
             return jsonContent;

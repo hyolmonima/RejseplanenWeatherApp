@@ -31,6 +31,7 @@ namespace weatherApp.Controllers
         {
             return RedirectToAction("GetWeather","Weather", new{wDestination = wDest });
         }
+
         
     }
 }
