@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="MyClient.js" />
@@ -981,13 +982,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
-    <Compile Include="Controllers\RejseController.cs" />
+    <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\origDest.cs" />
-    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\LocationService.cs" />
     <Compile Include="Models\Rejseplanen.cs" />
     <Compile Include="Models\Weather.cs" />
@@ -1008,7 +1008,7 @@
     <Content Include="Views\Home\DestinationWeather.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\AngularView.cshtml" />
-    <Content Include="Views\Rejse\Index.cshtml" />
+    <Content Include="Views\Trip\Index.cshtml" />
     <Content Include="Views\Weather\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

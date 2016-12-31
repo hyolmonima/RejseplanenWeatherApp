@@ -1,45 +1,8 @@
 ﻿var App = angular.module('App', []);
-App.controller('TripController', function ($scope,$http ,TripService) {
+App.controller('TripController', function ($scope, $http) {
 
-    getTrips();
-    function getTrips() {
-        TripService.getTrips()
-            .success(function (tripData) {
-                $scope.trips = tripData;
-                console.log($scope.trips);
-            })
-            .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
-                console.log($scope.status);
-            });
-    }
-
-    $scope.userQuery = function (originId, destinationId) {
-     return $http.get('/Home/GetTrip',originId, destinationId)
-       .success(function (tripData1) {
-           $scope.trips1 = tripData1;
-           console.log($scope.trips1);
-       })
-    };
-});
-
-App.controller('RejseController', function ($scope, $http, RejseService) {
-
-    getTrips();
-    function getTrips() {
-        RejseService.getTrips()
-            .success(function (tripData) {
-                $scope.trips = tripData;
-                console.log($scope.trips);
-            })
-            .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
-                console.log($scope.status);
-            });
-    }
-
-    $scope.originQuery = function (originString) {
-        return $http.get('/Location/OriginLocationService?originString=' + originString + '&format=json')
+ $scope.originQuery = function (originString) {
+        return $http.get('/Location/OriginLocationService?originString=' + originString)
           .success(function (originData) {
               $scope.origin = originData;
               console.log($scope.origin);
@@ -47,7 +10,7 @@ App.controller('RejseController', function ($scope, $http, RejseService) {
     };
 
     $scope.destinationQuery = function (destinationString) {
-        return $http.get('/Location/DestinationLocationService?destinationString=' + destinationString + '&format=json')
+        return $http.get('/Location/DestinationLocationService?destinationString=' + destinationString)
           .success(function (destinationData) {
               $scope.destination = destinationData;
               console.log($scope.destination);
@@ -55,7 +18,7 @@ App.controller('RejseController', function ($scope, $http, RejseService) {
     };
 
     $scope.userQuery = function (originId, destinationId) {
-        return $http.get('/Rejse/DataReceiver?origin='+ originId+'&destination='+ destinationId+'&format=json')
+        return $http.get('/Trip/GetTrip?origin='+ originId+'&destination='+ destinationId)
           .success(function (tripData1) {
               $scope.trips1 = tripData1;
               console.log($scope.trips1);
@@ -79,23 +42,23 @@ App.controller('RejseController', function ($scope, $http, RejseService) {
     };
 });
 
-App.factory('RejseService', ['$http', function ($http) {
+//App.factory('TripService', ['$http', function ($http) {
 
-    var RejseService = {};
-    RejseService.getTrips = function () {
-        return $http.get('/Rejse/GetTrip');
-    };
-    return RejseService;
+//    var TripService = {};
+//    TripService.getTrips = function () {
+//        return $http.get('/Trip/GetTrip');
+//    };
+//    return TripService;
 
-}]);
+//}]);
 
-App.factory('LocationService', ['$http', function ($http) {
+//App.factory('LocationService', ['$http', function ($http) {
 
-    var LocationService = {};
-    LocationService.getLocations = function (location) {
-        return $http.getJSON('http://xmlopen.rejseplanen.dk/bin/rest.exe/location?input='+ location);
-    };
-    return LocationService;
+//    var LocationService = {};
+//    LocationService.getLocations = function (location) {
+//        return $http.getJSON('http://xmlopen.rejseplanen.dk/bin/rest.exe/location?input='+ location);
+//    };
+//    return LocationService;
 
-}]);
+//}]);
 

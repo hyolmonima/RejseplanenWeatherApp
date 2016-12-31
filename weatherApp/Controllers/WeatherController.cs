@@ -10,7 +10,7 @@ namespace weatherApp.Controllers
     public class WeatherController : Controller
     {
         // GET: Weather
-        string k = "København H";
+        
         public ActionResult Index()
         {
             return View();
@@ -18,10 +18,6 @@ namespace weatherApp.Controllers
 
         public JsonResult GetWeather(string wDestination)
         {
-            //if (wDestination.Equals("KÃ¸benhavn H"))
-            //{
-            //    return Json("Copenhagen");
-            //        }
             Weather wData = new Weather();
             wData.destination = wDestination;
             return Json(wData.getWeatherForcast(), JsonRequestBehavior.AllowGet);

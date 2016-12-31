@@ -14,7 +14,6 @@ namespace RejseplanenWeather.Models
         public object getLocation()
         {
             var url = string.Format("http://xmlopen.rejseplanen.dk/bin/rest.exe/location?input={0}&format=json",locationString);
-
             WebClient client = new WebClient();
             client.Encoding = Encoding.UTF8;
             var content = client.DownloadString(url);

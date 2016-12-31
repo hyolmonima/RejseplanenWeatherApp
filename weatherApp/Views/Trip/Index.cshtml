@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br/>
+<div class="col" ng-app="App" ng-controller="TripController">
+    <div class="my_search_box my_search_box_content padding_around">
+        <div class="input-group col-md-4 padding_around">
+            <div ng-hide="origin.LocationList.StopLocation!=null">
+                <input class="form-control" type="text" ng-model="origin" value="{{origin.LocationList.StopLocation.name}}" placeholder="Departure Point" />
+                <input ng-hide="origin.LocationList.StopLocation!=null" class="form-control" type="submit" value="Load matches of your Origin" ng-click="originQuery(origin)" />
+            </div>
+            @*<span class="input-group-addon"> Origin</span>*@
+            <p ng-hide="origin.LocationList.StopLocation==null" class="text"><b>Pick your departure point from list</b></p>
+            <select ng-hide="origin.LocationList.StopLocation==null" ng-model="originId" class="form-control" placeholder="Select your Departure Point">
+                <option ng-repeat="location in origin.LocationList.StopLocation" value="{{location.id}}">{{location.name}}</option>
+            </select>
+
+        </div>
+        <div class="input-group col-md-4 my_search_box_content padding_around">
+            <div ng-show="destination.LocationList.StopLocation==null">
+                <input class="form-control" type="text" ng-model="destination" placeholder="Destination Point" />
+                <input ng-hide="destination.LocationList.StopLocation!=null" class="form-control" type="submit" value="Load Matches of you Destination" ng-click="destinationQuery(destination)" />
+            </div>
+            @*<span class="input-group-addon">  Destination</span>*@
+            <p ng-hide="destination.LocationList.StopLocation==null" class="text"><b>Pick your destination point from list</b></p>
+            <select ng-hide="destination.LocationList.StopLocation==null" ng-model="destId" class="form-control" placeholder="Select Destination Point">
+                <option ng-repeat="location in destination.LocationList.StopLocation" value="{{location.id}}">{{location.name}}</option>
+            </select>
+        </div>
+        <div class="input-group my_search_box_content">
+            <input class="btn btn-success padding_around_button" value="Search the Connections" type="submit" ng-model="but_Submit" ng-click="userQuery(originId,destId)" />
+        </div>
+    </div>
+    <hr />
+    @*Trip Display starts from here*@
+    <div ng-hide="trips1 == null" ng-repeat="TripList in trips1">
+        <div ng-if="TripList.Trip!=null" class="panel panel-default" ng-repeat="legs in TripList.Trip">
+            <div class="panel panel-body outside_alert">
+                <h5>
+                    <span ng-hide="legs.Leg.name==null" class="alert alert-info no_overlap">
+                        <span ng-if="legs.Leg.type=='WALK'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/fuss_pic.gif"></span>
+                        <span ng-if="legs.Leg.type=='TOG' || sub_leg.type=='REG'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/029_pic.gif"></span>
+                        <span ng-if="legs.Leg.type=='EXB' || sub_leg.type=='BUS'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/013_pic.gif"></span>
+                        <span ng-if="legs.Leg.type=='IC'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/sel_prod_ic.png"></span>
+                        <span ng-if="legs.Leg.type=='S'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/sel_prod_s.png"></span>
+                        <span ng-if="legs.Leg.type=='M'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/sel_prod_metro.png"></span>
+                        {{legs.Leg.name}}
+                        <span ng-hide="legs.Leg.Origin.time==null" class="badge">{{legs.Leg.Origin.time}}</span>
+                    </span>
+
+                    <span ng-hide="legs.Leg.Origin.name == null" class="alert alert-success no_overlap">
+                        {{legs.Leg.Origin.name}}
+                        <span ng-hide="legs.Leg.Origin.rtTrack == null" class="badge"> Spor {{legs.Leg.Origin.rtTrack}}</span>
+                    </span><span ng-hide="legs.Leg.Origin.rtTrack == null" class="glyphicon glyphicon-arrow-right no_overlap"></span>
+                    <span ng-hide="legs.Leg.Destination.name==null" class="alert alert-success no_overlap">
+                        {{legs.Leg.Destination.name}}
+                        <span ng-hide="legs.Leg.Destination.rtTrack==null" class="badge"> Spor {{legs.Leg.Destination.rtTrack}}</span>
+                    </span>
+                    @*<span ng-repeat="last_item in legs.Leg[legs.Leg.length - 1]"> {{last_item.Destinaion.time}}</span>*@
+                    <input ng-hide="legs.Leg.Destination.name==null" class="alert col-md-offset-2 wether_button_small wether_button no_overlap" value="Weather in {{legs.Leg.Destination.name}}" type="submit" ng-click="weatherQuery(legs.Leg.Destination.name)" />
+                    <input ng-hide="legs.Leg.Destination.name==null" class="alert hide_Unhide" ng-src="http://nimalama.info/images/weather.png" ng-click="weatherQuery(legs.Leg.Destination.name)" />
+                    </h5>
+            </div>
+            @*The Multiple connection div starts from here....*@
+
+            <div class="panel" ng-hide="sub_leg.Origin.name == null" ng-repeat="sub_leg in legs.Leg">
+                <span class="alert no_overlap">
+                    <span ng-if="sub_leg.type=='WALK'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/fuss_pic.gif"></span>
+                    <span ng-if="sub_leg.type=='TOG' || sub_leg.type=='REG'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/029_pic.gif"></span>
+                    <span ng-if="sub_leg.type=='EXB' || sub_leg.type=='BUS'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/013_pic.gif"></span>
+                    <span ng-if="sub_leg.type=='IC'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/sel_prod_ic.png"></span>
+                    <span ng-if="sub_leg.type=='S'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/sel_prod_s.png"></span>
+                    <span ng-if="sub_leg.type=='M'"><img height="20px" ng-src="http://www.rejseplanen.dk/img/sel_prod_metro.png"></span>
+
+                    {{sub_leg.name}}
+                    <span class="badge">{{sub_leg.Origin.time}}</span>
+                </span>
+                <span class="alert alert-success no_overlap"> {{sub_leg.Origin.name}} <span ng-hide="sub_leg.Origin.rtTrack == null" class="badge">Spor {{sub_leg.Origin.rtTrack}}</span></span>
+                <span ng-hide="sub_leg.Origin.name == null" class="glyphicon glyphicon-arrow-right"></span>
+                <span class="alert alert-success no_overlap"> {{sub_leg.Destination.name}}<span ng-hide="sub_leg.Destination.rtTrack == null" class="badge">Spor {{sub_leg.Destination.rtTrack}}</span> </span>
+                <input class="alert wether_button no_overlap" value="Weather in {{sub_leg.Destination.name}}" type="submit" ng-click="weatherQuery(sub_leg.Destination.name)" />
+                <span ng-hide="sub_leg.Destination.name==null" class="alert hide_Unhide" ng-click="weatherQuery(sub_leg.Destination.name)"><img height="25px" src="http://nimalama.info/images/weather.png" /></span>
+              </div>
+
+            @* Weather Section From Here.........*@
+            <div id="weatherBox" ng-hide="data1.main.temp == null" ng-model="weatherDiv" class="alert alert-danger col-md-offset-1">
+                <input class="btn btn-danger" type="reset" ng-click="css: Hidden" value="Close" />
+                <div ng-repeat="weather in data1.weather">
+                    <img ng-src="http://openweathermap.org/img/w/{{weather.icon}}.png" />
+                    <h4> Weather: {{weather.main}}</h4>
+                    <h4> Description: {{weather.description}}</h4>
+                </div>
+                <div ng-hide="data1.main.temp == null">
+                    <h4> Temperature: {{data1.main.temp}} &#8451;</h4>
+                </div>
+                <div ng-hide="data1.wind.speed == null">
+                    <h4> Wind Speed: {{data1.wind.speed}} m/s;</h4>
+                </div>
+                <div ng-repeat="weather1 in data1.weather">
+                    <input ng-hide="data1.wind.speed == null" class="btn btn-success" type="submit" value="Get Recommendation" ng-click="recommendationQuery(weather1.main,data1.main.temp,data1.wind.speed)" />
+                </div>
+                <h4 ng-bind="">{{data2}}</h4>
+            </div>
+            <div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

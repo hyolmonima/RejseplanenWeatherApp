@@ -4,7 +4,7 @@ using weatherApp.Models;
 
 namespace weatherApp.Controllers
 {
-    public class RejseController : Controller
+    public class TripController : Controller
     {
         // GET: Rejse
         public ActionResult Index()
@@ -12,16 +12,16 @@ namespace weatherApp.Controllers
             return View();
         }
 
-        public JsonResult GetTrip(string originId, string destinationId)
+        public JsonResult GetTrip(string origin, string destination)
         {
-            origDest data = new origDest();
-            data.baseUrl = string.Format("http://xmlopen.rejseplanen.dk/bin/rest.exe/trip?originId={0}&destId={1}&format=json", originId, destinationId);
+            Trip data = new Trip();
+            data.baseUrl = string.Format("http://xmlopen.rejseplanen.dk/bin/rest.exe/trip?originId={0}&destId={1}&format=json", origin, destination);
             return Json(data.getTripInfo(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DataReceiver(string origin, string destination)
         {
-            return RedirectToAction("GetTrip", "Rejse", new { OriginId = origin, destinationId = destination });
+            return RedirectToAction("GetTrip", "Trip", new { OriginId = origin, destinationId = destination });
         }
     }
 }
