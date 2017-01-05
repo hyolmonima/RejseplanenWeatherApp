@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <td> Origin </td>
+        <td><input type="text" id="txtOrigin" /></td>
+    </tr>
+    <tr>
+        <td> Destination </td>
+        <td><input type="text" id="txtDestination" /></td>
+    </tr>
+
+</table>
+<input type="button" id="btnGetTrip" value="Search for the connections" /><br />
+
+<div id="resultDiv">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#btnGetTrip').click(function () {
+            var reqData = $('#txtOrigin').val();
+            var resElement = $('#resultDiv');
+            var apiKey = '67747486e2d5351d2a8c6c0c70cf5df7';
+            var appid = '&APPID=';
+            $.ajax({
+                url: 'http://api.openweathermap.org/data/2.5/forecast',
+                method : 'get',
+                data: { q: reqData + encodeURIComponent(appid) + apiKey },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.message != null) {
+                        resElement.html(data.message)
+                    } else {
+                        reqElement.html('Weather: ' + data.weather[0].main + '<br/>' + 'Description: ' + data.weather[0].description);
+                    }
+                }
+            });
+        });
+    });
+
+</script>

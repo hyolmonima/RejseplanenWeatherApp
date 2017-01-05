@@ -1,0 +1,58 @@
+﻿body {
+}
+
+#weatherBox {
+    position: fixed;
+    right: 20px;
+    top: 200px;
+    z-index: 100000000000000;
+    border: 2px solid #808080;
+    border-right: 0px;
+    background-color:white;
+    color: #000000;
+    font-size: 18px;
+    padding: 25px;
+}
+
+.wether_button{
+    float: right !important;
+}
+
+.my_search_box
+{
+  display : inline;
+}
+
+.padding_around
+{
+    padding: 2px 5px 10px 3px;
+}
+
+.padding_around_button{
+    padding : 10px 20px 10px 20px;
+}
+
+.no_overlap{
+    overflow:hidden;
+     padding : 2px 2px 2px 2px;
+     margin: 5px 2px 2px 2px;
+}
+.outside_alert{
+     padding : 2px 2px 2px 2px;
+}
+
+.hide_Unhide {
+    display: none;
+}
+@media only screen and (max-width: 500px) {
+    .wether_button{ 
+        display: none;
+
+    }
+
+.hide_Unhide{ 
+      display: block;
+      float:right;
+       padding : 2px 0px 10px 2px;
+    }
+}

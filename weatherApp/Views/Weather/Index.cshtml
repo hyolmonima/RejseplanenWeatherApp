@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Weather Condition in {{data1.name}}</h2>
+<div ng-app="App" ng-controller="RejseController">
+    <div class="input-group">
+        <input class="form-control" type="text" ng-model="wDest" />
+        <input class="btn btn-success" type="submit" value="Get Weather" ng-click="weatherQuery(wDest)" />
+    </div>
+    <div class="panel panel-body">
+        <div class="panel panel-default" ng-repeat="weather in data1.weather">
+            <h4> Weather: {{weather.main}}</h4>
+            <h4> Description: {{weather.description}}</h4>
+            <input type="hidden" value="{{weather.main}}" ng-model="weatherDescription" />
+        </div>
+        <div ng-hide="data1.main.temp == null" class="panel panel-default">
+            <h4> Temperature: {{data1.main.temp}} &#8451;</h4>
+            <input type="hidden" value="{{data1.main.temp}}" ng-model="temp" />
+        </div>
+        <div ng-hide="data1.wind.speed == null" class="panel panel-default">
+            <h4> Temperature: {{data1.wind.speed}} m/s;</h4>
+            <input type="hidden" value="{{data1.wind.speed}}" ng-model="wind" />
+        </div>
+        <input ng-hide="data1.wind.speed == null" class="btn btn-success" type="submit" value="Get Recommendation" ng-click="" />
+    </div>
+
+</div>
