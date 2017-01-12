@@ -10,7 +10,7 @@ namespace weatherApp.Controllers
     public class WeatherController : Controller
     {
         // GET: Weather
-
+        
         public ActionResult Index()
         {
             return View();
@@ -18,6 +18,15 @@ namespace weatherApp.Controllers
 
         public JsonResult GetWeather(string wDestination)
         {
+            //Remove all the characters after "(" sign.
+            int indexBracket = wDestination.IndexOf("("); 
+            if (indexBracket > 0)
+                wDestination = wDestination.Substring(0, indexBracket);
+            int indexComma = wDestination.IndexOf(",");
+            if (indexComma> 0)
+                wDestination = wDestination.Substring(0, indexComma);
+
+
             Weather wData = new Weather();
             wData.destination = wDestination;
             return Json(wData.getWeatherForcast(), JsonRequestBehavior.AllowGet);
@@ -27,7 +36,7 @@ namespace weatherApp.Controllers
         {
             Decimal coordX, coordY;
             Decimal.TryParse(x, out coordX);
-            var CalculatedX = Math.Truncate((coordX / 1000000) * 100) / 100; //To truncate to two decimal places only.
+            var CalculatedX = Math.Truncate((coordX / 1000000)*100)/100; //To truncate to two decimal places only.
             Decimal.TryParse(y, out coordY);
             var CalculatedY = Math.Truncate((coordY / 1000000) * 100) / 100;
             WeatherByCoordinates wData = new WeatherByCoordinates();
@@ -37,8 +46,9 @@ namespace weatherApp.Controllers
         }
         public ActionResult DataReceiver(string wDest)
         {
-            return RedirectToAction("GetWeather", "Weather", new { wDestination = wDest });
+            return RedirectToAction("GetWeather","Weather", new{wDestination = wDest });
         }
+
         
     }
 }

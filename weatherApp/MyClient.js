@@ -1,12 +1,12 @@
 ﻿var App = angular.module('App', []);
 App.controller('TripController', function ($scope, $http) {
 
- $scope.originQuery = function (originString) {
-     return $http.get('/Location/OriginLocationService?originString=' + originString)
-       .success(function (originData) {
-           $scope.origin = originData;
-           console.log($scope.origin);
-       });
+    $scope.originQuery = function (originString) {
+        return $http.get('/Location/OriginLocationService?originString=' + originString)
+          .success(function (originData) {
+              $scope.origin = originData;
+              console.log($scope.origin);
+          });
     };
 
     $scope.destinationQuery = function (destinationString) {
@@ -21,7 +21,17 @@ App.controller('TripController', function ($scope, $http) {
         return $http.get('/Trip/GetTrip?origin=' + originId + '&destination=' + destinationId)
           .success(function (tripData1) {
               $scope.trips1 = tripData1;
-              console.log($scope.trips1);
+                  var lastItem = tripData1.TripList.Trip.slice(-1)[0];
+                  var destination = lastItem.Leg.slice(-1)[0];
+                  var destinationName = destination.Destination.name;
+                  $scope.finalDestination = destinationName;
+                  $http.get('/Weather/GetWeather?wDestination=' + destinationName)
+              .success(function (wData1) {
+                  $scope.destinationWeather = wData1;
+                  console.log($scope.destinationWeather);
+                  console.log($scope.destinationName);
+                  console.log($scope.trips1);
+              });
           });
     };
 
@@ -48,25 +58,14 @@ App.controller('TripController', function ($scope, $http) {
               console.log($scope.data2);
           });
     };
+    
+    $scope.visibleWeather = true;
+    $scope.toggleWeather = function () {
+        $scope.visibleWeather = !$scope.visibleWeather;
+    };
+
+    $scope.visible = true;
+    $scope.toggleTrip = function () {
+        $scope.visible = !$scope.visible;
+    };
 });
-
-//App.factory('TripService', ['$http', function ($http) {
-
-//    var TripService = {};
-//    TripService.getTrips = function () {
-//        return $http.get('/Trip/GetTrip');
-//    };
-//    return TripService;
-
-//}]);
-
-//App.factory('LocationService', ['$http', function ($http) {
-
-//    var LocationService = {};
-//    LocationService.getLocations = function (location) {
-//        return $http.getJSON('http://xmlopen.rejseplanen.dk/bin/rest.exe/location?input='+ location);
-//    };
-//    return LocationService;
-
-//}]);
-
