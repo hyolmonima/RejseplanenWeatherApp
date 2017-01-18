@@ -66,6 +66,6 @@ App.controller('TripController', function ($scope, $http) {
 
     $scope.visible = true;
     $scope.toggleTrip = function () {
-        $scope.visible = !$scope.visible;
+        $scope.visible = $scope.visible ? false : true;
     };
 });

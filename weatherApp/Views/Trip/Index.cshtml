@@ -35,14 +35,16 @@
     </div>
     <hr />
     @*Weather Overview at the destionation.*@
-    <div id="weatherOverview" class="panel panel-body alert alert-info" ng-if="destinationWeather != null">
+      
+    <div  id="weatherOverview" class="panel panel-body alert alert-info" ng-if="destinationWeather != null">
         <div class="h4"> The weather condition in <b> {{finalDestination}}</b> is <span ng-repeat="weatherData in destinationWeather.weather"> <b>{{weatherData.description}}</b></span> with Temperature <b>{{destinationWeather.main.temp}}</b> &#8451; and <b>{{destinationWeather.wind.speed}}</b> m/s of wind speed.</div>
 
     </div>
-
+  
     @*Trip Display starts from here*@
 
     <div ng-hide="trips1 == null" ng-repeat="TripList in trips1">
+        
         <div ng-if="TripList.Trip!=null" class="panel panel-default" ng-repeat="legs in TripList.Trip">
             @*<span ng-repeat="lastItem in legs.Leg[legs.Leg.length-1].Destination.time"> {{lastItem}}</span>*@
             @*<input class="alert alert-info" type="submit" value="View Details" ng-click="toggle()" />*@
@@ -110,9 +112,11 @@
                     <h4> Wind Speed: {{data1.wind.speed}} m/s;</h4>
                 </div>
                 <div ng-repeat="weather1 in data1.weather">
-                    <input ng-hide="data1.wind.speed == null" class="btn btn-success" type="submit" value="Get Recommendation" ng-click="recommendationQuery(weather1.main,data1.main.temp,data1.wind.speed)" />
+                    <input ng-hide="data1.wind.speed == null" class="btn btn-success" type="submit" value="Get Recommendation" ng-click="recommendationQuery(weather1.main,data1.main.temp,data1.wind.speed) ; toggleTrip()" />
                 </div>
-                <h4 ng-bind="">{{data2}}</h4>
+                <div ng-hide = "visible">
+                    <h4>{{data2}}</h4>
+                </div>
             </div>
             <div>
 
