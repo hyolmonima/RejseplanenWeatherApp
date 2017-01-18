@@ -21,21 +21,21 @@ App.controller('TripController', function ($scope, $http) {
         return $http.get('/Trip/GetTrip?origin=' + originId + '&destination=' + destinationId)
           .success(function (tripData1) {
               $scope.trips1 = tripData1;
-                  var lastItem = tripData1.TripList.Trip.slice(-1)[0];
-                  var destination = lastItem.Leg.slice(-1)[0];
-                  var destinationName = destination.Destination.name;
-                  $scope.finalDestination = destinationName;
-                  $http.get('/Weather/GetWeather?wDestination=' + destinationName)
-              .success(function (wData1) {
-                  $scope.destinationWeather = wData1;
-                  console.log($scope.destinationWeather);
-                  console.log($scope.destinationName);
-                  console.log($scope.trips1);
-              });
+              var lastItem = tripData1.TripList.Trip.slice(-1)[0];
+              var destination = lastItem.Leg.slice(-1)[0];
+              var destinationName = destination.Destination.name;
+              $scope.finalDestination = destinationName;
+              $http.get('/Weather/GetWeather?wDestination=' + destinationName)
+          .success(function (wData1) {
+              $scope.destinationWeather = wData1;
+              console.log($scope.destinationWeather);
+              console.log($scope.destinationName);
+              console.log($scope.trips1);
+          });
           });
     };
 
-    $scope.weatherQueryByCoordinates = function (x,y) {
+    $scope.weatherQueryByCoordinates = function (x, y) {
         return $http.get('/Weather/GetWeatherByCoordinates?x=' + x + '&y=' + y)
           .success(function (wDataByCoord) {
               $scope.wDataByCoord = wDataByCoord;
@@ -58,7 +58,7 @@ App.controller('TripController', function ($scope, $http) {
               console.log($scope.data2);
           });
     };
-    
+
     $scope.visibleWeather = true;
     $scope.toggleWeather = function () {
         $scope.visibleWeather = !$scope.visibleWeather;

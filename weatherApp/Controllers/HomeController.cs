@@ -14,32 +14,6 @@ namespace RejseplanenWeather.Controllers
         {
             return View();
         }
-
-        public ActionResult WeatherJS()
-        {
-            return View();
-        }
-
-        public ActionResult DestinationWeather()
-        {
-            return View();
-        }
-        public JsonResult GetWeather()
-        {
-            Weather data = new Weather();
-           
-            return Json(data.getWeatherForcast(), JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult WeatherOrNot()
-        {
-            return View();
-        }
-
-        public JsonResult GetTrip()
-        {
-            Rejseplanen data = new Rejseplanen();
-            return Json(data.getTripInfo(), JsonRequestBehavior.AllowGet);
-        }
-
+        
     }
 }

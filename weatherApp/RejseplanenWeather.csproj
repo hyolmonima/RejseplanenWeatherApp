@@ -989,7 +989,6 @@
     </Compile>
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\LocationService.cs" />
-    <Compile Include="Models\Rejseplanen.cs" />
     <Compile Include="Models\WeatherByCoordinates.cs" />
     <Compile Include="Models\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
