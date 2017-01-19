@@ -36,7 +36,7 @@
     <hr />
     @*Weather Overview at the destionation.*@
 
-    <div class="weatherOverviewLargeScreen panel panel-body alert alert-info" ng-if="destinationWeather != null">
+    <div class="weatherOverviewLargeScreen panel panel-default alert alert-info" ng-if="destinationWeather != null">
         <div class="h4"> The weather condition at <b> {{finalDestination}}</b> is <span ng-repeat="weatherData in destinationWeather.weather"> <b>{{weatherData.description}}</b></span> with Temperature <b>{{destinationWeather.main.temp}}</b> &#8451; and <b>{{destinationWeather.wind.speed}}</b> m/s of wind speed.</div>
 
     </div>
@@ -80,8 +80,8 @@
                     <span ng-hide="legs.Leg.Destination.track==null" class="badge"> Spor {{legs.Leg.Destination.track}}</span>
                 </span>
 
-                <input ng-if="legs.Leg.type!='WALK'" class="alert col-md-offset-2 wether_button_small wether_button no_overlap " value="Weather in {{legs.Leg.Destination.name}}" type="submit" ng-click="weatherQuery(legs.Leg.Destination.name); toggleWeather()" />
-                <span ng-if="legs.Leg.type!='WALK'" class="hide_Unhide" ng-click="weatherQuery(legs.Leg.Destination.name); toggleWeather()"> <img height="25" src="http://nimalama.info/images/weather.png" /> </span>
+                <input ng-if="legs.Leg.type!='WALK'" class="alert col-md-offset-2 wether_button_small wether_button no_overlap " value="Weather at {{legs.Leg.Destination.name}}" type="submit" ng-click="weatherQuery(legs.Leg.Destination.name); toggleWeather()" />
+                <span ng-if="legs.Leg.type!='WALK'" class="wether_button_small hide_Unhide" ng-click="weatherQuery(legs.Leg.Destination.name); toggleWeather()"> <img height="25" src="http://nimalama.info/images/weather.png" /> </span>
 
             </div>
             @*The Multiple connection div starts from here....*@
@@ -109,8 +109,8 @@
                     <span ng-hide="sub_leg.Destination.track == null" class="badge">Spor {{sub_leg.Destination.track}}</span>
                     <span ng-hide="sub_leg.Destination.time==null" class="badge">{{sub_leg.Destination.time}}</span>
                 </span>
-                <input ng-if="sub_leg.type!='WALK'" class="alert col-md-offset-2 wether_button_small wether_button no_overlap" value="Weather in {{sub_leg.Destination.name}}" type="submit" ng-click="weatherQuery(sub_leg.Destination.name); toggleWeather(True)" />
-                <span ng-if="sub_leg.type!='WALK'" class="hide_Unhide" ng-click="weatherQuery(sub_leg.Destination.name); toggleWeather()"><img height="25" src="http://nimalama.info/images/weather.png" /></span>
+                <input ng-if="sub_leg.type!='WALK'" class="alert col-md-offset-2  wether_button no_overlap" value="Weather at {{sub_leg.Destination.name}}" type="submit" ng-click="weatherQuery(sub_leg.Destination.name); toggleWeather(True)" />
+                <span ng-if="sub_leg.type!='WALK'" class="wether_button_small hide_Unhide" ng-click="weatherQuery(sub_leg.Destination.name); toggleWeather()"><img height="25" src="http://nimalama.info/images/weather.png" /></span>
             </div>
 
             @* Weather Section From Here.........*@

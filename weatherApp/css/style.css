@@ -20,10 +20,12 @@
     }
 
     .hide_Unhide {
-        display: block;
         float: right !important;
-        bottom:-20px;
-        
+        margin-top:-30px;
+        padding-right: 5px;
+        border:thin;
+        border-color:#808080;
+      
     }
 
     #weatherBox {
@@ -43,23 +45,20 @@
     }
 
     .downArrowIconSmallScreen {
-        display:table;
-        margin-left:120px;
+        display: table;
+        margin-left: 120px;
     }
+
     .downArrowIconLargeScreen {
-        display:none;
-       
+        display: none;
     }
 
     .weatherOverviewSmallScreen {
-        display:table;
+        display: table;
     }
+
     .weatherOverviewLargeScreen {
-        display:none;
-    }
-    .inputField {
-        width:90%;
-        padding: 2px 2px 2px 2px;
+        display: none;
     }
 }
 
@@ -114,14 +113,15 @@
         display: none;
     }
 
-      .downArrowIconSmallScreen{
-        display:none;
+    .downArrowIconSmallScreen {
+        display: none;
     }
 
-       .weatherOverviewSmallScreen{
-        display:none;
+    .weatherOverviewSmallScreen {
+        display: none;
     }
-       .weatherOverviewLargeScreen{
-        display:table;
+
+    .weatherOverviewLargeScreen {
+        display: table;
     }
 }
