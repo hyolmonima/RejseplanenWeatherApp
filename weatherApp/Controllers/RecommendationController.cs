@@ -30,29 +30,33 @@ namespace weatherApp.Controllers
                 {
                     if (time1 <= 10 && time1 >= 16)
                     {
-                        return Json("Please wear Down Jacket and a Wollen Cap");
+                       return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "sunglass" }, new { item = "wollencap" } } });
                     }
                     else
                     {
-                        return Json("Please wear Down Jacket, Wollen Cap and Remember to take googles.");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
                     }
                 }
                 if (temp1 <= 5 & wind1 <= 2)
                 {
                     if (time1 <= 10 && time1 >= 16)
                     {
-                        return Json("Please wear Down Jacket and Wollen Cap");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "sunglass" }, new { item = "wollencap" } } });
+                    }
+                    else
+                    {
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
                     }
                    
                 }    
                 
                 if (temp1 >= 15)
                 {
-                    return Json("Please wear a thin Jacket and sun goggels");
+                    return Json(new { message = "", icon = new[] { new { item = "jacket" }, new { item = "sunglass" } } });
                 }
                 if (temp1 <= 15)
                 {
-                    return Json("Please wear a thick Jacket and sun goggels");
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "sunglass" } } });
                 }
             }
 
@@ -60,19 +64,19 @@ namespace weatherApp.Controllers
             {
                 if (temp1 <= 5 & wind1 >= 2)
                 {
-                    return Json("Please wear Down Jacket and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "raincoat" } } });
                 }
                 if (temp1 <= 5 & wind1 <= 2)
                 {
-                    return Json("Please wear Down Jacket and Umbrella" + time1);
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "umbrella" } } });
                 }
                 if (temp1 >= 15)
                 {
-                    return Json("Please wear a normal Jacket and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "jacket" }, new { item = "raincoat" } } });
                 }
                 if (temp1 <= 15)
                 {
-                    return Json("Please wear a Tshirt and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "raincoat" } } });
                 }
             }
 
@@ -80,19 +84,19 @@ namespace weatherApp.Controllers
             {
                 if (temp1 <= 5)
                 {
-                        return Json("Please wear Down Jacket, RainCoat as there is thunderstorm and temperature is less than 5 Degrees.");
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "raincoat" } } });
                 }
                 if (temp1 <= 15 )
                 {
-                    return Json("Please wear Normal Jacket and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "jacket" }, new { item = "raincoat" } } });
                 }
                 if (temp1 <= 20)
                 {
-                    return Json("Please wear thin Jacket and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "tshirt" }, new { item = "raincoat" } } });
                 }
                 if (temp1 >= 20)
                 {
-                   return Json("Please wear a Tshirt and Rain Coat Not Umbrella as there will be Thunderstorm");
+                    return Json(new { message = "", icon = new[] { new { item = "tshirt" }, new { item = "raincoat" } } });
                 }
             }
 
@@ -101,21 +105,21 @@ namespace weatherApp.Controllers
                 if (temp1 <= 5 & wind1 >= 2)
                 {
                     if (time1 >= 10 && time1 <= 17)
-                        return Json("Please wear Down Jacket, Umbrella/ Rain Coat and Do not forget your Goggels");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "raincoat" }, new { item = "sunglass" } } });
                     else
-                        return Json("Please wear Down Jacket, Umbrella/Rain Coat and No need of googles as it is night");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "raincoat" } } });
                 }
                 if (temp1 <= 5 & wind1 <= 2)
                 {
-                    return Json("Please wear Down Jacket and No need of goggels in the night" + time1);
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "raincoat" } } });
                 }
                 if (temp1 >= 15)
                 {
-                    return Json("Please wear a normal Jacket and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "tshirt" }, new { item = "raincoat" } } });
                 }
                 if (temp1 <= 15)
                 {
-                    return Json("Please wear a Tshirt and Rain Coat");
+                    return Json(new { message = "", icon = new[] { new { item = "jacket" }, new { item = "raincoat" } } });
                 }
             }
 
@@ -124,21 +128,21 @@ namespace weatherApp.Controllers
                 if (temp1 <= 5 & wind1 >= 2)
                 {
                     if (time1 >= 10 && time1 <= 17)
-                        return Json("Please wear Down Jacket");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" }, new { item = "sunglass" } } });
                     else
-                        return Json("Please wear Down Jacket and Torch Light");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" }} });
                 }
                 if (temp1 <= 5 & wind1 <= 2)
                 {
-                    return Json("Please wear Down Jacket ");
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" }} });
                 }
                 if (temp1 <= 15 & wind1 >= 3)
                 {
-                    return Json("Please wear a Wind Breaker Jacket");
+                    return Json(new { message = "", icon = new[] { new { item = "jacket" }, new { item = "sunglass" } } });
                 }
                 if (temp1 >= 16 & wind1 <= 3)
                 {
-                    return Json("Enjoy the Good Weather");
+                    return Json(new { message = "Enjoy the Good Weather" });
                 }
             }
 
@@ -147,11 +151,13 @@ namespace weatherApp.Controllers
                 if (temp1 <= 5 & wind1 >= 2)
                 {
                     if (time1 >= 10 && time1 <= 17)
-                        return Json("Please wear Down Jacket, Snow boots and Do not forget your Goggels as there can be very shiny Snow");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "sunglass" } } });
                     else
-                        return Json("Please wear Down Jacket, Snow boots and No need of googles as it is night");
-
-
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
+                }
+                else
+                {
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
                 }
                 
             }
@@ -161,11 +167,13 @@ namespace weatherApp.Controllers
                 if (temp1 <= 5 & wind1 >= 2)
                 {
                     if (time1 >= 10 && time1 <= 17)
-                        return Json("Please wear Down Jacket, Snow boots and Do not forget your Goggels as there can be very shiny Snow");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "sunglass" } } });
                     else
-                        return Json("Please wear Down Jacket, Snow boots and No need of googles as it is night");
-
-
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
+                }
+                else
+                {
+                    return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
                 }
 
             }
@@ -175,17 +183,15 @@ namespace weatherApp.Controllers
                 if (temp1 <= 5 & wind1 >= 2)
                 {
                     if (time1 >= 10 && time1 <= 17)
-                        return Json("Please wear Down Jacket, Snow boots and Do not forget your Goggels as there can be very shiny Snow");
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" }, new { item = "wollencap" } } });
                     else
-                        return Json("Please wear Down Jacket, Snow boots and No need of googles as it is night");
-
-
+                        return Json(new { message = "", icon = new[] { new { item = "downJacket" } } });
                 }
 
             }
 
             // return Json("message\":\"Every thing is fine. Enjoy !}");
-            return new JsonResult  {  Data = new  { message = "Enjoy your Day",  icon = "enjoy" }
+            return new JsonResult  {  Data = new  { message = "Enjoy your Day" }
             };
         }  
     }

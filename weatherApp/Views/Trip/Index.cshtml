@@ -37,9 +37,14 @@
     @*Weather Overview at the destionation.*@
 
     <div class="weatherOverviewLargeScreen panel panel-default alert alert-info" ng-if="destinationWeather != null">
-        <div class="h4"> The weather condition at <b> {{finalDestination}}</b> is <span ng-repeat="weatherData in destinationWeather.weather"> <b>{{weatherData.description}}</b></span> with Temperature <b>{{destinationWeather.main.temp}}</b> &#8451; and <b>{{destinationWeather.wind.speed}}</b> m/s of wind speed.</div>
+        <div><h3>Weather at {{finalDestination}} </h3></div><br>
+        <span ng-repeat="weatherData in destinationWeather.weather">
+            <span class="alert alert-info outside_alert"> <img src="http://openweathermap.org/img/w/{{weatherData.icon}}.png" width="30px"><b>{{weatherData.description}}</b></span>
+        </span> <span class="alert alert-info outside_alert"> <img src="http://www.nimalama.info/images/temp.png" width="30">{{destinationWeather.main.temp}} &#8451;</span>
+        <span class="alert alert-info outside_alert"> <img src="http://www.nimalama.info/images/wind.png" width="30">{{destinationWeather.wind.speed}} m/s</span>
 
     </div>
+
     <div class="weatherOverviewSmallScreen panel panel-default alert alert-info" ng-if="destinationWeather != null">
         <span><b>Weather at {{finalDestination}} </b></span><br>
         <span ng-repeat="weatherData in destinationWeather.weather">
@@ -131,8 +136,9 @@
                 <div ng-repeat="weather1 in data1.weather">
                     <input ng-hide="data1.wind.speed == null" class="btn btn-success" type="submit" value="Get Recommendation" ng-click="recommendationQuery(weather1.main,data1.main.temp,data1.wind.speed) ; toggleTrip()" />
                 </div>
-                <div ng-hide="visible">
-                    <h4>{{data2}}</h4>
+                <div class="panel panel-default" ng-hide="">
+                    <h4>{{data2.message}}</h4>
+                    <span class="alert" ng-repeat="items in data2.icon"><img width="50" src="http://www.nimalama.info/icons/{{items.item}}.png" /></span>
                 </div>
             </div>
             <div>
